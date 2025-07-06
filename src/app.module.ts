@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CafeteriaModule } from './cafeteria/cafeteria.module';
+import { StallsModule } from './stalls/stalls.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -24,7 +25,8 @@ import { CafeteriaModule } from './cafeteria/cafeteria.module';
         trustServerCertificate: true,
       }),
     }),
-    CafeteriaModule,],
+    CafeteriaModule,
+    StallsModule,],
   controllers: [AppController],
   providers: [AppService],
 })

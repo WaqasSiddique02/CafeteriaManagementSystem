@@ -1,4 +1,5 @@
-import { Column, Entity, Not, PrimaryGeneratedColumn } from "typeorm";
+import { Stall } from "src/stalls/entities/stall.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Cafeteria {
@@ -11,4 +12,7 @@ export class Cafeteria {
 
     @Column({nullable: false})
     location: string;
+
+    @OneToMany(() => Stall, (stall) => stall.cafeteria)
+    stalls: Stall[];
 }
