@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CafeteriaModule } from './cafeteria/cafeteria.module';
 import { StallsModule } from './stalls/stalls.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -26,7 +27,8 @@ import { StallsModule } from './stalls/stalls.module';
       }),
     }),
     CafeteriaModule,
-    StallsModule,],
+    StallsModule,
+    UsersModule,],
   controllers: [AppController],
   providers: [AppService],
 })

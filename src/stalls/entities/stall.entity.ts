@@ -1,5 +1,6 @@
 import { Cafeteria } from "src/cafeteria/entities/cafeteria.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "src/users/entities/user.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Stall {
@@ -18,4 +19,7 @@ export class Stall {
     @ManyToOne(() => Cafeteria, (cafeteria) => cafeteria.stalls, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'cafeteria_id' })
     cafeteria: Cafeteria;
+
+    @OneToMany(() => User, (user) => user.stall)
+    users: User[];
 }
