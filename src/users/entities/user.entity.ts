@@ -1,7 +1,8 @@
+import { Order } from "src/orders/entities/order.entity";
 import { Stall } from "src/stalls/entities/stall.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity('users')
 export class User {
     @PrimaryGeneratedColumn()
     id:number;
@@ -25,4 +26,7 @@ export class User {
     })
     @JoinColumn({ name: 'stall_id' })
     stall: Stall;
+
+    @OneToMany(() => Order, (order) => order.cashier)
+    orders: Order[];
 }

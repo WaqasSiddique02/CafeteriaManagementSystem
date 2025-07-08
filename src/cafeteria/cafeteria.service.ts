@@ -7,8 +7,7 @@ import { UpdateCafeteriaDto } from './dto/update-cafeteria.dto';
 
 @Injectable()
 export class CafeteriaService {
-  constructor(
-    @InjectRepository(Cafeteria) private cafeteriaRepository: Repository<Cafeteria>,) {}
+  constructor( @InjectRepository(Cafeteria) private cafeteriaRepository: Repository<Cafeteria>,) {}
 
   async create(createCafeteriaDto: CreateCafeteriaDto) {
     try {

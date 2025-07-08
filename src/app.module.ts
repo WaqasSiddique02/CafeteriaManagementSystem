@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CafeteriaModule } from './cafeteria/cafeteria.module';
 import { StallsModule } from './stalls/stalls.module';
 import { UsersModule } from './users/users.module';
+import { OrdersModule } from './orders/orders.module';
 import { MenuItemsModule } from './menu-items/menu-items.module';
 
 @Module({
@@ -30,6 +31,7 @@ import { MenuItemsModule } from './menu-items/menu-items.module';
     CafeteriaModule,
     StallsModule,
     UsersModule,
+    OrdersModule,
     MenuItemsModule,],
   controllers: [AppController],
   providers: [AppService],

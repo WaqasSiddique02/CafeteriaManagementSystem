@@ -1,15 +1,16 @@
 import { Cafeteria } from "src/cafeteria/entities/cafeteria.entity";
 import { MenuItem } from "src/menu-items/entities/menu-item.entity";
+import { Order } from "src/orders/entities/order.entity";
 import { User } from "src/users/entities/user.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity('stalls')
 export class Stall {
     @PrimaryGeneratedColumn()
     id:number;
 
     @Column()
-    cafetria_id:number;
+    cafeteria_id:number;
 
     @Column({type: 'varchar', length: 100})
     name:string;

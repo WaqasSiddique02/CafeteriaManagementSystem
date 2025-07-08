@@ -1,7 +1,7 @@
 import { Stall } from "src/stalls/entities/stall.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity('cafeterias')
 export class Cafeteria {
     @PrimaryGeneratedColumn()
     id :number;
