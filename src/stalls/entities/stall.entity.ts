@@ -1,4 +1,5 @@
 import { Cafeteria } from "src/cafeteria/entities/cafeteria.entity";
+import { MenuItem } from "src/menu-items/entities/menu-item.entity";
 import { User } from "src/users/entities/user.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -20,6 +21,9 @@ export class Stall {
     @JoinColumn({ name: 'cafeteria_id' })
     cafeteria: Cafeteria;
 
-    @OneToMany(() => User, (user) => user.stall)
-    users: User[];
+  @OneToMany(() => User, (user) => user.stall)
+  users: User[];
+
+  @OneToMany(() => MenuItem, (menuItem) => menuItem.stall)
+  menuItems: MenuItem[];
 }
