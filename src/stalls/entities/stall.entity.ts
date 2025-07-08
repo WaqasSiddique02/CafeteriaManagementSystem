@@ -1,14 +1,15 @@
 import { Cafeteria } from "src/cafeteria/entities/cafeteria.entity";
+import { Order } from "src/orders/entities/order.entity";
 import { User } from "src/users/entities/user.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity('stalls')
 export class Stall {
     @PrimaryGeneratedColumn()
     id:number;
 
     @Column()
-    cafetria_id:number;
+    cafeteria_id:number;
 
     @Column({type: 'varchar', length: 100})
     name:string;
@@ -22,4 +23,7 @@ export class Stall {
 
     @OneToMany(() => User, (user) => user.stall)
     users: User[];
+
+    @OneToMany(() => Order, (order) => order.stall)
+    orders: Order[];
 }
