@@ -5,7 +5,7 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "t
 @Entity('orders')
 export class Order {
     @PrimaryGeneratedColumn()
-    id : number;
+    id: number;
 
     @ManyToOne(() => Stall, (stall) => stall.orders, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'stall_id' })
@@ -15,7 +15,7 @@ export class Order {
     @JoinColumn({ name: 'cashier_id' })
     cashier: User;
 
-    @Column({type: 'decimal', precision: 5, scale: 2, default: 0.0})
+    @Column({ type: 'decimal', precision: 5, scale: 2, default: 0.0 })
     total_amount: number;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

@@ -7,13 +7,13 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColum
 @Entity('stalls')
 export class Stall {
     @PrimaryGeneratedColumn()
-    id:number;
+    id: number;
 
     @Column()
-    cafeteria_id:number;
+    cafeteria_id: number;
 
-    @Column({type: 'varchar', length: 100})
-    name:string;
+    @Column({ type: 'varchar', length: 100 })
+    name: string;
 
     @Column({ type: 'decimal', precision: 5, scale: 2, default: 10.0 })
     university_share_percent: number;
@@ -22,9 +22,12 @@ export class Stall {
     @JoinColumn({ name: 'cafeteria_id' })
     cafeteria: Cafeteria;
 
-  @OneToMany(() => User, (user) => user.stall)
-  users: User[];
+    @OneToMany(() => User, (user) => user.stall)
+    users: User[];
 
-  @OneToMany(() => MenuItem, (menuItem) => menuItem.stall)
-  menuItems: MenuItem[];
+    @OneToMany(() => MenuItem, (menuItem) => menuItem.stall)
+    menuItems: MenuItem[];
+
+    @OneToMany(() => Order, (order) => order.stall)
+    orders: Order[];
 }
