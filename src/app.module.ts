@@ -8,6 +8,7 @@ import { StallsModule } from './stalls/stalls.module';
 import { UsersModule } from './users/users.module';
 import { OrdersModule } from './orders/orders.module';
 import { MenuItemsModule } from './menu-items/menu-items.module';
+import { OrderItemsModule } from './order-items/order-items.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -32,7 +33,8 @@ import { MenuItemsModule } from './menu-items/menu-items.module';
     StallsModule,
     UsersModule,
     OrdersModule,
-    MenuItemsModule,],
+    MenuItemsModule,
+    OrderItemsModule,],
   controllers: [AppController],
   providers: [AppService],
 })

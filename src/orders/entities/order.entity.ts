@@ -20,4 +20,5 @@ export class Order {
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     order_time: Date;
+    orderItems: any;
 }

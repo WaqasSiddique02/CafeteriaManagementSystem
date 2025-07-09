@@ -1,5 +1,6 @@
+import { OrderItem } from "src/order-items/entities/order-item.entity";
 import { Stall } from "src/stalls/entities/stall.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class MenuItem {
@@ -22,5 +23,7 @@ export class MenuItem {
  @ManyToOne(() => Stall, (stall) => stall.menuItems, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'stall_id' }) // tells TypeORM which column is the FK
   stall: Stall;
-
+    
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.menuItem)
+  orderItems: OrderItem[];
 }
