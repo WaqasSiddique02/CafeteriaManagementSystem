@@ -27,4 +27,5 @@ export class Stall {
 
   @OneToMany(() => MenuItem, (menuItem) => menuItem.stall)
   menuItems: MenuItem[];
+    orders: any;
 }
