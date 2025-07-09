@@ -9,6 +9,7 @@ async function bootstrap() {
     .setTitle('Cafeteria Management API')
     .setDescription('Cafeteria Management System API Documentation')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, documentFactory);
