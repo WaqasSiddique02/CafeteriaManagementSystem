@@ -1,8 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { CafeteriaService } from './cafeteria.service';
 import { CreateCafeteriaDto } from './dto/create-cafeteria.dto';
 import { UpdateCafeteriaDto } from './dto/update-cafeteria.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
+import { AuthGuard } from 'src/auth/auth.guard';
 
+@ApiBearerAuth()
+@UseGuards(AuthGuard)
 @Controller('cafeteria')
 export class CafeteriaController {
   constructor(private readonly cafeteriaService: CafeteriaService) {}
