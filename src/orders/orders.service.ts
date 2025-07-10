@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Order } from './entities/order.entity';
 import { User } from 'src/users/entities/user.entity';
+import { Role } from 'src/auth/authorization/role.enum';
 
 @Injectable()
 export class OrdersService {
@@ -18,7 +19,7 @@ async create(createOrderDto: CreateOrderDto) {
       throw new NotFoundException('User not found');
     }
 
-    if (user.role !== 'cashier') {
+    if (!user.role.includes(Role.Cashier)) {
       throw new BadRequestException('User is not a cashier');
     }
 
@@ -77,7 +78,7 @@ async update(id: number, updateOrderDto: UpdateOrderDto) {
       throw new NotFoundException('User not found');
     }
 
-    if (user.role !== 'cashier') {
+    if (!user.role.includes(Role.Cashier)) {
       throw new BadRequestException('User is not a cashier');
     }
 

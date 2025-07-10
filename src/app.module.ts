@@ -10,8 +10,6 @@ import { OrdersModule } from './orders/orders.module';
 import { MenuItemsModule } from './menu-items/menu-items.module';
 import { OrderItemsModule } from './order-items/order-items.module';
 import { AuthModule } from './auth/auth.module';
-import { APP_GUARD } from '@nestjs/core';
-import { AuthGuard } from './auth/auth.guard';
 
 @Module({
   imports: [ConfigModule.forRoot({

@@ -4,6 +4,8 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { Roles } from 'src/auth/authorization/roles.decorator';
+import { Role } from 'src/auth/authorization/role.enum';
 
 @ApiBearerAuth()
 @UseGuards(AuthGuard)

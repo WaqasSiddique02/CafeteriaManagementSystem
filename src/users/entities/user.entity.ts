@@ -1,3 +1,4 @@
+import { Role } from "src/auth/authorization/role.enum";
 import { Order } from "src/orders/entities/order.entity";
 import { Stall } from "src/stalls/entities/stall.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
@@ -18,7 +19,7 @@ export class User {
     password_hash:string;
 
     @Column({type: 'varchar', length: 20,})
-    role: 'admin' | 'cashier' | 'manager';
+    role: Role[];
 
     @ManyToOne(() => Stall, (stall) => stall.users, {
     nullable: true,
