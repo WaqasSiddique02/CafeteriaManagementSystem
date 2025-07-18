@@ -52,7 +52,6 @@ async findAll() {
   }
 }
 
-
   async findOne(id: number) {
     try{
      const query = `SELECT stalls.*, cafeterias.name AS cafeteria_name, cafeterias.location AS cafeteria_location

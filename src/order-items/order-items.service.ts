@@ -102,7 +102,6 @@ async create(createOrderItemDto: CreateOrderItemDto) {
     }
   }
 
- 
   async remove(id: number) {
     try {
       const query = `

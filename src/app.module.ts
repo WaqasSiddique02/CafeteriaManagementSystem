@@ -10,6 +10,7 @@ import { OrdersModule } from './orders/orders.module';
 import { MenuItemsModule } from './menu-items/menu-items.module';
 import { OrderItemsModule } from './order-items/order-items.module';
 import { AuthModule } from './auth/auth.module';
+import { OtpModule } from './otp/otp.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -28,6 +29,7 @@ import { AuthModule } from './auth/auth.module';
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: false,
         trustServerCertificate: true,
+        timezone: 'UTC',
       }),
     }),
     CafeteriaModule,
@@ -36,7 +38,8 @@ import { AuthModule } from './auth/auth.module';
     OrdersModule,
     MenuItemsModule,
     OrderItemsModule,
-    AuthModule,],
+    AuthModule,
+    OtpModule,],
   controllers: [AppController],
   providers: [AppService],
 })

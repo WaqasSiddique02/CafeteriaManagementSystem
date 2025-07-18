@@ -4,7 +4,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  app.enableCors();
+  
   const config = new DocumentBuilder()
     .setTitle('Cafeteria Management API')
     .setDescription('Cafeteria Management System API Documentation')
@@ -12,7 +13,7 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('swagger', app, documentFactory);
+  SwaggerModule.setup('docs', app, documentFactory);
   
   await app.listen(process.env.PORT ?? 3000).then(()=>{
     console.log(`Application is running on: http://localhost:${process.env.PORT ?? 3000}`);

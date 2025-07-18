@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -12,7 +21,7 @@ import { Roles } from 'src/auth/authorization/roles.decorator';
 @UseGuards(AuthGuard, RolesGuard)
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) { }
+  constructor(private readonly usersService: UsersService) {}
 
   @Post()
   @Roles(Role.Admin)
@@ -21,15 +30,20 @@ export class UsersController {
   }
 
   @Get()
-  @Roles(Role.Admin,Role.Manager,Role.Cashier)
+  @Roles(Role.Admin, Role.Manager, Role.Cashier)
   findAll() {
     return this.usersService.findAll();
   }
 
   @Get(':id')
-  @Roles(Role.Admin,Role.Manager,Role.Cashier)
+  @Roles(Role.Admin, Role.Manager, Role.Cashier)
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
+  }
+
+  @Patch('reset-password/:email')
+  updatePassword(@Param('email') email: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.updatePassword(email, updateUserDto);
   }
 
   @Patch(':id')

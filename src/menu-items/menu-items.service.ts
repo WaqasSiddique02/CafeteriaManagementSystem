@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { CreateMenuItemDto } from './dto/create-menu-item.dto';
 import { UpdateMenuItemDto } from './dto/update-menu-item.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-
 import { Repository } from 'typeorm';
 import { MenuItem } from './entities/menu-item.entity';
 
@@ -31,7 +30,6 @@ export class MenuItemsService {
       throw new Error('Failed to create menu item');
     }
   }
-
 
   async findAllAvailable() {
     try {
@@ -70,7 +68,6 @@ export class MenuItemsService {
     }
   }
 
-
   async findOne(id: number) {
     try {
       const query = `
@@ -92,7 +89,6 @@ export class MenuItemsService {
       throw new Error('Failed to fetch menu item');
     }
   }
-
 
   async update(id: number, updateMenuItemDto: UpdateMenuItemDto) {
     try {
@@ -149,6 +145,7 @@ export class MenuItemsService {
       throw new Error('Failed to mark menu item as unavailable');
     }
   }
+
   async remove(id: number) {
     try {
       const query = `
@@ -173,4 +170,3 @@ export class MenuItemsService {
     }
   }
 }
-

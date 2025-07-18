@@ -39,6 +39,7 @@ async create(createOrderDto: CreateOrderDto) {
     throw error;
   }
 }
+
  async findAll() {
     try{
       const query = `SELECT * FROM orders`;

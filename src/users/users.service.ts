@@ -83,6 +83,30 @@ export class UsersService {
     }
   }
 
+    async updatePassword(email: string, updateUserDto: UpdateUserDto) {
+    try{
+      const saltOrRounds = 10;
+      const password = updateUserDto.password_hash ?? '';
+      const hash = await bcrypt.hash(password, saltOrRounds);
+
+      const query = `UPDATE users SET password_hash = '${hash}' WHERE email = '${email}' RETURNING *`;
+
+      const result = await this.userRepository.query(query);
+      if (!result || result.length === 0) {
+        throw new Error(`User with email ${email} not found`);
+      }
+      console.log(`User with email ${email} updated successfully:`, result);
+      return {
+        message: 'User updated successfully',
+        data: result[0],
+      };
+    }
+    catch(error){
+      console.error("Error in update method:", error);
+      throw new Error(`Failed to update user with email ${email}`);
+    }
+  }
+
  async remove(id: number) {
     try {
       const query = `DELETE FROM users WHERE id = ${id} RETURNING *`;

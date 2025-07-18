@@ -30,4 +30,10 @@ export class User {
 
     @OneToMany(() => Order, (order) => order.cashier)
     orders: Order[];
+
+    @Column({ type: 'varchar', length: 10, nullable: true })
+    otp_code: string;
+
+    @Column({ type: 'timestamp', nullable: true })
+    otp_expires_at: Date;
 }
