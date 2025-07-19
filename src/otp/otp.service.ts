@@ -37,8 +37,7 @@ export class OtpService {
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const expiresAt = new Date();
     expiresAt.setMinutes(expiresAt.getMinutes() + 10); // 10 minutes from now (UTC)
-
-    // Debug: Log the expiration time
+    
     console.log('Generated OTP expires at (UTC):', expiresAt.toISOString());
 
     await this.userRepository.update(
