@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto} from './dto/create-user.dto';
+import { ChangePasswordDto, CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
@@ -8,45 +8,46 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
- constructor(@InjectRepository(User) private userRepository: Repository<User>,) {}
- 
- async create(createUserDto: CreateUserDto) {
-    try{
+  constructor(
+    @InjectRepository(User) private userRepository: Repository<User>,
+  ) {}
+
+  async create(createUserDto: CreateUserDto) {
+    try {
       const saltOrRounds = 10;
       const password = createUserDto.password_hash ?? '';
       const hash = await bcrypt.hash(password, saltOrRounds);
-      const query=`INSERT INTO users (name,email,password_hash,role,stall_id) VALUES ('${createUserDto.name}','${createUserDto.email}','${hash}','${createUserDto.role}',${createUserDto.stall_id || null}) RETURNING *`;
+      const query = `INSERT INTO users (name,email,password_hash,role,stall_id) VALUES ('${createUserDto.name}','${createUserDto.email}','${hash}','${createUserDto.role}',${createUserDto.stall_id || null}) RETURNING *`;
       const result = await this.userRepository.query(query);
-      console.log("User created successfully:",result);
+      console.log('User created successfully:', result);
       return {
-      message: 'User created successfully',
-      data: result[0],
-    };
-    }catch(error){
-      console.error("Error in create method:", error);
-      throw new Error("Failed to create user");
+        message: 'User created successfully',
+        data: result[0],
+      };
+    } catch (error) {
+      console.error('Error in create method:', error);
+      throw new Error('Failed to create user');
     }
   }
 
   async findAll() {
-    try{
-      const query= `SELECT * FROM users`;
+    try {
+      const query = `SELECT * FROM users`;
       const result = await this.userRepository.query(query);
       if (!result || result.length === 0) {
-        throw new Error("No users found");
+        throw new Error('No users found');
       }
 
-      console.log("Users retrieved successfully:", result);
+      console.log('Users retrieved successfully:', result);
       return result;
-
-    }catch(error){
-      console.error("Error in findAll method:", error);
-      throw new Error("Failed to retrieve users");
+    } catch (error) {
+      console.error('Error in findAll method:', error);
+      throw new Error('Failed to retrieve users');
     }
   }
 
   async findOne(id: number) {
-    try{
+    try {
       const query = `SELECT * FROM users WHERE id = ${id}`;
       const result = await this.userRepository.query(query);
       if (!result || result.length === 0) {
@@ -54,14 +55,14 @@ export class UsersService {
       }
       console.log(`User with id ${id} retrieved successfully:`, result);
       return result[0];
-    }catch(error){
-      console.error("Error in findOne method:", error);
+    } catch (error) {
+      console.error('Error in findOne method:', error);
       throw new Error(`Failed to retrieve user with id ${id}`);
     }
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    try{
+    try {
       const saltOrRounds = 10;
       const password = updateUserDto.password_hash ?? '';
       const hash = await bcrypt.hash(password, saltOrRounds);
@@ -76,15 +77,13 @@ export class UsersService {
         message: 'User updated successfully',
         data: result[0],
       };
-    }
-    catch(error){
-      console.error("Error in update method:", error);
+    } catch (error) {
+      console.error('Error in update method:', error);
       throw new Error(`Failed to update user with id ${id}`);
     }
   }
 
-
- async remove(id: number) {
+  async remove(id: number) {
     try {
       const query = `DELETE FROM users WHERE id = ${id} RETURNING *`;
       const result = await this.userRepository.query(query);
@@ -97,8 +96,38 @@ export class UsersService {
         data: result[0],
       };
     } catch (error) {
-      console.error("Error in remove method:", error);
+      console.error('Error in remove method:', error);
       throw new Error(`Failed to delete user with id ${id}`);
+    }
+  }
+
+  async changePassword(changePasswordDto: ChangePasswordDto) {
+    try {
+      const saltOrRounds = 10;
+      const oldPassword = changePasswordDto.old_password ?? '';
+      const newPassword = changePasswordDto.new_password ?? '';
+      const hash = await bcrypt.hash(newPassword, saltOrRounds);
+
+      const query = `UPDATE users SET password_hash = '${hash}' WHERE email = '${changePasswordDto.email}' AND password_hash = '${oldPassword}' RETURNING *`;
+      const result = await this.userRepository.query(query);
+      if (!result || result.length === 0) {
+        throw new Error(
+          `User with email ${changePasswordDto.email} not found or old password does not match`,
+        );
+      }
+      console.log(
+        `User with email ${changePasswordDto.email} password updated successfully:`,
+        result,
+      );
+      return {
+        message: 'Password updated successfully',
+        data: result[0],
+      };
+    } catch (error) {
+      console.error('Error in changePassword method:', error);
+      throw new Error(
+        `Failed to update password for user with email ${changePasswordDto.email}`,
+      );
     }
   }
 }

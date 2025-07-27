@@ -27,3 +27,20 @@ export class CreateUserDto {
   @IsInt()
   stall_id?: number; // Only for managers
 }
+
+export class ChangePasswordDto {
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  old_password: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  new_password: string;
+}
