@@ -25,6 +25,13 @@ let AuthController = class AuthController {
     signIn(body) {
         return this.authService.signIn(body.email, body.password);
     }
+    signUp(body) {
+        return this.authService.signUp(body);
+    }
+    updatePassword(email, resetPasswordDto) {
+        console.log(`Received password reset request for email: ${email}`);
+        return this.authService.updatePassword(email, resetPasswordDto);
+    }
 };
 exports.AuthController = AuthController;
 __decorate([
@@ -37,6 +44,23 @@ __decorate([
     __metadata("design:paramtypes", [create_auth_dto_1.CreateAuthDto]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "signIn", null);
+__decorate([
+    (0, swagger_1.ApiOkResponse)({ description: 'User Signed up successfully' }),
+    (0, common_1.Post)('signup'),
+    (0, swagger_1.ApiBody)({ type: create_auth_dto_1.CreateSignUpDto }),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_auth_dto_1.CreateSignUpDto]),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "signUp", null);
+__decorate([
+    (0, common_1.Patch)('reset-password/:email'),
+    __param(0, (0, common_1.Param)('email')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, create_auth_dto_1.ResetPasswordDto]),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "updatePassword", null);
 exports.AuthController = AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

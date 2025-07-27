@@ -117,6 +117,7 @@ let OrderItemsService = class OrderItemsService {
         }
         catch (error) {
             console.error('Error deleting order item:', error);
+            console.error('Failed to delete order item:', error);
             throw new Error('Failed to delete order item');
         }
     }

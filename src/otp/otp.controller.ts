@@ -6,7 +6,7 @@ import { ApiBody } from '@nestjs/swagger';
 export class OtpController {
   constructor(private readonly otpService: OtpService) {}
 
-  @Post()
+  @Post('send')
   @ApiBody({
     schema: {
       type: 'object',

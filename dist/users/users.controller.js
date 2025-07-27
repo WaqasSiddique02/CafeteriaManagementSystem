@@ -36,10 +36,6 @@ let UsersController = class UsersController {
     findOne(id) {
         return this.usersService.findOne(+id);
     }
-    updatePassword(email, updateUserDto) {
-        console.log(`Received password reset request for email: ${email}`);
-        return this.usersService.updatePassword(email, updateUserDto);
-    }
     update(id, updateUserDto) {
         return this.usersService.update(+id, updateUserDto);
     }
@@ -77,14 +73,6 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Patch)('reset-password/:email'),
-    __param(0, (0, common_1.Param)('email')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_user_dto_1.UpdateUserDto]),
-    __metadata("design:returntype", void 0)
-], UsersController.prototype, "updatePassword", null);
 __decorate([
     (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),

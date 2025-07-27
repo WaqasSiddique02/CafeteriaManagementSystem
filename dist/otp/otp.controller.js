@@ -30,7 +30,7 @@ let OtpController = class OtpController {
 };
 exports.OtpController = OtpController;
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)('send'),
     (0, swagger_1.ApiBody)({
         schema: {
             type: 'object',

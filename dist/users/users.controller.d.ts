@@ -10,10 +10,6 @@ export declare class UsersController {
     }>;
     findAll(): Promise<any>;
     findOne(id: string): Promise<any>;
-    updatePassword(email: string, updateUserDto: UpdateUserDto): Promise<{
-        message: string;
-        data: any;
-    }>;
     update(id: string, updateUserDto: UpdateUserDto): Promise<{
         message: string;
         data: any;

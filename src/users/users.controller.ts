@@ -45,15 +45,6 @@ export class UsersController {
     return this.usersService.findOne(+id);
   }
 
-  @Patch('reset-password/:email')
-  updatePassword(
-    @Param('email') email: string,
-    @Body() updateUserDto: UpdateUserDto,
-  ) {
-    console.log(`Received password reset request for email: ${email}`);
-    return this.usersService.updatePassword(email, updateUserDto);
-  }
-
   @ApiBearerAuth()
   @UseGuards(AuthGuard, RolesGuard)
   @Patch(':id')

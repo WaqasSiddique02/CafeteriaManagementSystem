@@ -15,10 +15,6 @@ export declare class UsersService {
         message: string;
         data: any;
     }>;
-    updatePassword(email: string, updateUserDto: UpdateUserDto): Promise<{
-        message: string;
-        data: any;
-    }>;
     remove(id: number): Promise<{
         message: string;
         data: any;
