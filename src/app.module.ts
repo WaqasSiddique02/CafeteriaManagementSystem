@@ -11,6 +11,7 @@ import { MenuItemsModule } from './menu-items/menu-items.module';
 import { OrderItemsModule } from './order-items/order-items.module';
 import { AuthModule } from './auth/auth.module';
 import { OtpModule } from './otp/otp.module';
+import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -39,7 +40,8 @@ import { OtpModule } from './otp/otp.module';
     MenuItemsModule,
     OrderItemsModule,
     AuthModule,
-    OtpModule,],
+    OtpModule,
+    AdminDashboardModule,],
   controllers: [AppController],
   providers: [AppService],
 })
