@@ -12,6 +12,7 @@ import { OrderItemsModule } from './order-items/order-items.module';
 import { AuthModule } from './auth/auth.module';
 import { OtpModule } from './otp/otp.module';
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
+import { ManagerDashboardModule } from './manager-dashboard/manager-dashboard.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -41,7 +42,8 @@ import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
     OrderItemsModule,
     AuthModule,
     OtpModule,
-    AdminDashboardModule,],
+    AdminDashboardModule,
+    ManagerDashboardModule,],
   controllers: [AppController],
   providers: [AppService],
 })
