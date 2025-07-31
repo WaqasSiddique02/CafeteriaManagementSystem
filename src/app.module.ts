@@ -13,6 +13,7 @@ import { AuthModule } from './auth/auth.module';
 import { OtpModule } from './otp/otp.module';
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
 import { ManagerDashboardModule } from './manager-dashboard/manager-dashboard.module';
+import { CashierDashboardModule } from './cashier-dashboard/cashier-dashboard.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -43,7 +44,8 @@ import { ManagerDashboardModule } from './manager-dashboard/manager-dashboard.mo
     AuthModule,
     OtpModule,
     AdminDashboardModule,
-    ManagerDashboardModule,],
+    ManagerDashboardModule,
+    CashierDashboardModule,],
   controllers: [AppController],
   providers: [AppService],
 })
