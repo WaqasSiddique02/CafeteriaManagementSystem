@@ -1,98 +1,193 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+﻿# Cafeteria Management System - Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Overview
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This repository contains the backend API for a Cafeteria Management System built with NestJS and TypeScript. It provides role-based management of cafeterias, stalls, menu items, orders, users, OTP verification, and analytics dashboards for administrators, stall managers, and cashiers.
 
-## Description
+## Key Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- User authentication with JWT
+- Role-based access control (Admin, Manager, Cashier)
+- CRUD operations for users, cafeterias, stalls, menu items, orders, and order items
+- OTP email verification
+- Password reset support
+- Admin analytics endpoints for sales, income, stall performance, and top items
+- Manager dashboards scoped to individual stalls
+- Cashier dashboards for daily sales, recent orders, and popular items
+- PostgreSQL persistence via TypeORM
+- Swagger API documentation available at `/docs`
 
-## Project setup
+## Tech Stack
 
-```bash
-$ npm install
-```
+- NestJS
+- TypeScript
+- PostgreSQL
+- TypeORM
+- JWT authentication
+- Swagger
+- Jest
+- ESLint + Prettier
 
-## Compile and run the project
+## Prerequisites
 
-```bash
-# development
-$ npm run start
+- Node.js 20+
+- npm
+- PostgreSQL database
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
+## Installation
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Deployment
+## Configuration
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Create a `.env` file in the project root with the following variables:
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+DB_NAME=cafeteria_db
+PORT=3000
+```
+
+> Note: The JWT secret is currently hardcoded in `src/auth/auth.module.ts` as `your_jwt_secret`. Replace this string with a secure value before deploying to production.
+
+## Running the Application
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm run start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+The API will start on `http://localhost:3000` by default.
 
-## Resources
+## Swagger API Documentation
 
-Check out a few resources that may come in handy when working with NestJS:
+Open the browser at:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```text
+http://localhost:3000/docs
+```
 
-## Support
+## Available Scripts
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- `npm run start` - start the application
+- `npm run start:dev` - start in watch mode
+- `npm run start:prod` - run the compiled production build
+- `npm run build` - compile TypeScript
+- `npm run lint` - run ESLint and auto-fix issues
+- `npm run format` - format source files with Prettier
+- `npm run test` - run unit tests
+- `npm run test:e2e` - run end-to-end tests
+- `npm run test:cov` - generate test coverage report
 
-## Stay in touch
+## Environment Variables
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- `DB_HOST` - PostgreSQL host
+- `DB_PORT` - PostgreSQL port
+- `DB_USERNAME` - database username
+- `DB_PASSWORD` - database password
+- `DB_NAME` - database name
+- `PORT` - HTTP server port
 
-## License
+## API Endpoints
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### Authentication
+
+- `POST /auth/login` - sign in and receive a JWT access token
+- `POST /auth/signup` - create a new user account
+- `PATCH /auth/reset-password/:email` - reset a user password by email
+
+### OTP
+
+- `POST /otp/send` - request OTP code for email verification
+- `POST /otp/verify` - verify OTP code
+
+### Users
+
+- `POST /users` - create a new user (Admin only)
+- `GET /users` - list users
+- `GET /users/:id` - get user details
+- `PATCH /users/:id` - update user (Admin only)
+- `DELETE /users/:id` - delete user (Admin only)
+- `PATCH /users/change-password` - change user password
+
+### Cafeterias
+
+- `POST /cafeteria` - create a cafeteria
+- `GET /cafeteria` - list cafeterias
+- `GET /cafeteria/:id` - get cafeteria details
+- `DELETE /cafeteria/:id` - delete cafeteria
+
+### Stalls
+
+- `POST /stalls` - create a stall
+- `GET /stalls` - list stalls
+- `GET /stalls/:id` - get stall details
+- `DELETE /stalls/:id` - delete stall
+
+### Menu Items
+
+- `POST /menu-items` - create a menu item
+- `GET /menu-items` - list all menu items
+- `GET /menu-items/available` - list available menu items
+- `GET /menu-items/:id` - get item details
+- `PATCH /menu-items/:id` - update item
+- `DELETE /menu-items/:id/softRemove` - soft delete an item
+- `DELETE /menu-items/:id` - hard delete an item
+
+### Orders
+
+- `POST /orders` - create a new order
+- `GET /orders` - list all orders
+- `GET /orders/:id` - get order details
+- `PATCH /orders/:id` - update an order
+- `DELETE /orders/:id` - delete an order
+
+### Order Items
+
+- `POST /order-items` - create order item entries
+- `GET /order-items` - list order items
+- `GET /order-items/:id` - get order item details
+- `DELETE /order-items/:id` - delete order item
+
+### Dashboards
+
+#### Admin Dashboard (Admin only)
+
+- `GET /admin-dashboard/today-sales`
+- `GET /admin-dashboard/sales-by-period?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD`
+- `GET /admin-dashboard/income-by-period?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD`
+- `GET /admin-dashboard/university-share?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD`
+- `GET /admin-dashboard/stall-sales?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD`
+- `GET /admin-dashboard/top-items?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD&limit=10`
+- `GET /admin-dashboard/overview`
+
+#### Stall Manager Dashboard (Manager only)
+
+- `GET /stall-manager-dashboard/:stallId/today-sales`
+- `GET /stall-manager-dashboard/:stallId/sales-by-period?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD`
+- `GET /stall-manager-dashboard/:stallId/income-by-period?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD`
+- `GET /stall-manager-dashboard/:stallId/top-items?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD&limit=10`
+- `GET /stall-manager-dashboard/:stallId/overview`
+
+#### Cashier Dashboard (Cashier only)
+
+- `GET /cashier-dashboard/:stallId/today-sales`
+- `GET /cashier-dashboard/:stallId/recent-orders?limit=10`
+- `GET /cashier-dashboard/:stallId/quick-stats`
+- `GET /cashier-dashboard/:stallId/popular-items?limit=5`
+
+## Security Notes
+
+- JWT is used for protected routes.
+- The app currently reads database connection values from environment variables.
+- Update the hardcoded JWT secret in `src/auth/auth.module.ts` before production deployment.
+- TypeORM is configured with `synchronize: false`, so database schema changes must be managed manually or with migrations.
+
+## Contributing
+
+Contributions are welcome. Please fork the repository, create a feature branch, and submit a pull request with a clear description of changes.
+
